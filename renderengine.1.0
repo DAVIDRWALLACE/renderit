@@ -1,0 +1,431 @@
+            // object constructor functions **********************************************************************************************************************************
+	/*
+	function renderslut(){
+		var pageTypes = [
+			"tabsets" : [
+					"buildActionItems"="",
+					"buildchunk":"build",
+					"throwStartTrigger":"throwTabTrigger",
+					"addStyle":"addTabStyle"
+						 ]
+		];
+
+		
+		function pageChunck(asjdlfasdf)
+		{
+			this.val = pageTypes[this.type];
+		
+		}
+		
+	
+	};
+	
+	*/
+var structures={
+	table:{
+		"wrapperstart":"tablestart",
+		"headersectionstart":"tableheadingrowstart",
+		"headeritem":"heading",
+		"headersectionend":"tableheadingrowend",
+		"bodysectionstart":"",
+		"bodyitemstart":"rowstart",
+		"bodyitem":"input"
+		"bodyitemend":"rowend",
+		"bodysectionendend":"",
+		"footersectionstart":"",
+		"footersectionitem":"",
+		"footerend":""
+		"wrapperend":"tableend"
+	},	dashbox:{
+		"wrapperstart":"dashboxstart",
+		"headersectionstart":"tableheadingrowstart",
+		"headeritem":"heading",
+		"headersectionend":"tableheadingrowend",
+		"bodysectionstart":"dashboxcontentstart",
+		"bodyitemstart":"rowstart",
+		"bodyitem":"input"
+		"bodyitemend":"rowend",
+		"bodysectionendend":"dashboxcontentend",
+		"footersectionstart":"",
+		"footersectionitem":"",
+		"footerend":""
+		"wrapperend":"dashboxend"
+	}
+		
+
+
+}
+var methods={"tabgroup":{"buildChunk":"build",
+                        "addHandlers":"addTabHandlers",
+                        "throwStartTrigger":"throwTabTrigger",
+						"addStyle":"addTabStyle"
+                        },
+				 "tabsets":{                        
+                        "buildChunk":"buildTabs",
+                        "addHandlers":"addTabHandlers",
+                        "throwStartTrigger":"throwTabTrigger",
+                        "addStyle":"addTabStyle"
+                        },
+                   "selecttable":{        
+                        "buildChunk":"build",
+                        "addHandlers":"addSelectTableHandlers",
+                        "throwStartTrigger":"gofish",
+                        "addStyle":"gofish"
+                        },
+                     "table":{
+                        "buildChunk":"build",
+                        "addHandlers":"addTableHandlers",
+                        "throwStartTrigger":"throwTableTrigger",
+                        "addStyle":"addTableStyle"
+							},
+					 "clock":{        
+                        "buildChunk":"build",
+                        "addHandlers":"gofish",
+                        "throwStartTrigger":"throwClockTrigger",
+                        "addStyle":"addClockStyle"
+                        },
+					"dashboard":{             
+                        "buildChunk":"build",
+                        "addHandlers":"addDashboardHandlers",
+                        "throwStartTrigger":"gofish",
+                        "addStyle":"addTableStyle"
+                        },					
+					 "activities":{                    
+                        "buildChunk":"build",
+                        "addHandlers":"addScrollHandlers",
+                        "throwStartTrigger":"gofish",
+                        "addStyle":"addActivitiesStyle"
+                        },
+                     "overview":{
+                        "buildChunk":"build",
+                        "addHandlers":"gofish",
+                        "throwStartTrigger":"gofish",
+                        "addStyle":"addOverviewStyle"
+                        },
+                     "subtable":{                        
+                        "buildChunk":"build",
+                        "addHandlers":"addMicroTableHandlers",
+                        "throwStartTrigger":"gofish",
+                        "addStyle":"addTagGridStyle"
+                        },
+					 "innertable":{                        
+                        "buildChunk":"build",
+                        "addHandlers":"addMicroTableHandlers",
+                        "throwStartTrigger":"gofish",
+                        "addStyle":"addInnerTableStyle"
+                        },
+                     "subform":{        
+                        "buildChunk":"build",
+                        "addHandlers":"addFormHandlers",
+                        "throwStartTrigger":"gofish",
+                        "addStyle":"addSubFormStyle "
+                        },
+                     "microcalendar":{
+                        "buildChunk":"build",
+                        "addHandlers":"gofish",
+                        "throwStartTrigger":"onLoadCalendarTrigger",
+                        "addStyle":"addCalendarStyle"
+                        },
+					"chart":{                     
+                        "buildChunk":"build",
+                        "addHandlers":"addDashboardHandlers",
+                        "throwStartTrigger":"onLoadChartTrigger",
+                        "addStyle":"gofish"
+                        },
+                    "microform":{
+                        "buildChunk":"build",
+                        "addHandlers":"addMicroFormHandlers",
+                        "throwStartTrigger":"gofish",
+                        "addStyle":"gofish"
+                        },
+                     "fullbox":{                      
+                        "buildChunk":"loadFullBox",
+                        "addHandlers":"addFullBoxHandlers",
+                        "throwStartTrigger":"onLoadFullBoxTrigger",
+                        "addStyle":"addTableStyle"
+                        },
+                     "nobox":{
+                        
+                        "buildChunk":"clearTabsForBox",
+                        "addHandlers":"addFullBoxHandlers",
+                        "throwStartTrigger":"onLoadFullBoxTrigger",
+                        "addStyle":"addTableStyle"},
+						                     "default":{
+                        "buildChunk":"build",
+                        "addHandlers":"gofish",
+                        "throwStartTrigger":"gofish",
+                        "addStyle":"gofish"
+						}}
+                        
+
+                
+
+	
+            function PageChunk(pIndex,obj,pTriggerParam,pParentId) {
+                $.extend(this, obj);
+				// bthis.this=pageChunks[pageChunks.length-1]
+                // properties
+				this.type=(this.type==""||!this.type)?"default":this.type;
+                this.index=pIndex
+                this.domId=this.type+this.index
+                this.chunk=this.index
+                this.parentDomId=pParentId
+               // this.combineAttributes=joinAttributes
+                this.triggerParam1=pTriggerParam
+                // methods
+                this.buildActionItems=function() {return }
+                this.render2=ren
+				
+                        
+                        this.buildChunk=buildTabs=eval(methods[this.type]["buildChunk"])
+                        this.addHandlers=eval(methods[this.type]["addHandlers"])
+                        this.throwStartTrigger=eval(methods[this.type]["throwStartTrigger"])
+                        this.addStyle=eval(methods[this.type]["addStyle"])
+            }
+            function getPageObject(pChunk,pRow,pCol,pStartIndex) {
+                var i
+                for (i=pStartIndex;i<pageItems.length;i++) {
+                    var tObj=pageItems[i]
+                    if ((tObj.row==pRow)&&(tObj.chunk=pChunk)&&(tObj.col==pCol)) {
+                        return tObj
+                        break;
+                    }
+                }
+            }
+			function gofish() {
+			return false
+			}
+			    function PageItem(pIndex,obj,pChunkIndex,pRowIndex,pCol) {
+                $.extend(this, obj);
+                this.index=pIndex;
+				// this.this=obj
+                this.domId=obj.type+pIndex;
+                this.chunk=pChunkIndex;
+                this.row=pRowIndex;
+                this.col=pCol;
+			//	this.itemHandlers=handlerFunctions;
+                this.render2=ren;
+               // this.combineAttributes=joinAttributes
+                this.open=function() {
+                    switch (obj.type) {
+                        case "input":
+                            return openDataInput(this)
+                            break;
+                        case "select":
+                            return openDataSelect(this)
+                            break;
+                    }
+                } 
+              
+
+            }
+			
+			
+			
+          function build() {
+                var i,x
+                var strOutput=""
+				var origThis=this
+                var $pParent=$("#"+this.parentDomId)
+                strOutput+=ObjectValues(this)
+				$pParent.empty()
+			$pParent.stop(true, true)
+           $pParent.showHtml(strOutput);
+			
+			// bind data tables plugin ***************
+			if (origThis.type=="table") { 
+				oTables[oTables.length]=$("#chunkContainer"+oTables.length).dataTable({
+				"aoColumnDefs": [
+				{ "bSortable": false, "aTargets": [0] },
+				{ "bSortable": false, "aTargets": [-1] }
+				],				
+			"sDom": "t",
+				"iDisplayLength" : 1000,
+				"bJQueryUI":false,
+				"bPaginate": false
+			})
+		
+			// apply filter plugin
+			var grid2 = $("#chunkContainer"+(oTables.length-1))
+			var options2 = {                    
+			filteringRows: function(filterStates) {
+			grid2.addClass('filtering');
+              },
+				filteredRows: function(filterStates) {
+                grid2.removeClass('filtering');
+              }
+            };      
+			
+			// filter plugin options *********************************************8
+            function setRowCountOnGrid2() {
+           //   var rowcount = grid2.find('tbody tr:not(:hidden)').length;
+            //  $('#rowcount').text('(Rows ' + rowcount + ')');
+            }
+            grid2.tableFilter(); // No additional filters      
+           //  setRowCountOnGrid2();
+                }
+            }
+			
+			
+			
+			// ********************* json processor/rendering engine ********************************************************************************************
+            ObjectValues = function(tObj, tKey){
+                var tText=""
+                var curObj=tObj                 
+				if (tObj.type) {
+                    pageItems[pageItems.length]=new PageItem(pageItems.length,tObj,pageChunks.length-1,0)
+                    var curObj2=pageItems[pageItems.length-1]
+					tText=curObj2.render2(curObj2.type+"start")
+                }   
+                if (typeof tObj == "object") {
+                    for (var tKeyProp in tObj) {
+                        if (Object.hasOwnProperty.call(tObj, tKeyProp)) {
+                            if (tKeyProp=="type") {
+                                pageItems[pageItems.length]=new PageItem(pageItems.length,tObj,pageChunks.length-1,0)
+								tItem=pageItems[pageItems.length-1]
+								if (tItem.type) {
+									var tType=(tItem.info)?"info"+tItem.type:tItem.type;
+                                tText+=tItem.render2(tType,function(){
+									
+								})
+	                              }
+								   }
+	                              tText+=ObjectValues(tObj[tKeyProp], tKey != undefined ? tKey + "." + tKeyProp : tKeyProp); 
+                        }
+                    }
+                } else {
+                }
+                if (curObj.type) {
+                    tText+=curObj2.render2(curObj2.type+"end")
+					// handlerFunctions(curObj2.type)
+                }
+                return tText.split("undefined").join("").split("NaN").join("")
+            };
+
+
+
+            // getter functions **********************************************************************************************
+            function getTabGroup(pUrl,pTriggerParam,pTarget) {
+                getPageChunk(pUrl,pTriggerParam,"tabsRow","json")
+            }
+            function getPageChunk(pUrl,pTriggerParam,pTarget,pSourceType,pOnloadFunction,pOnLoadFunctionParam) {
+
+                var tSourceType=(pSourceType)?pSourceType:"json"
+                var tTarget=(pTarget)?pTarget:"tabsRow"
+                if ((gCurrentInterface!=tTarget)&&((tTarget=="tabsRow")||(tTarget=="noTabsRow"))) {		
+                    resetStage()
+					pageChunks=null
+					pageChunks=new Array()
+					pageItems=null
+                pageItems=new Array()
+				oTables=null
+                oTables=new Array()
+                keys=new Array()
+                }
+				if (tTarget=="noTabsRow") {
+				$("#pageTitleBarHolder").css("display","none")
+				}
+				if (tTarget=="tabsRow") {
+				$("#pageTitleBarHolder").css("display","inline-block")
+				}
+                gCurrentInterface=tTarget
+				 $("#"+tTarget).empty()
+                $("#"+tTarget).append("<div class='loadingBox'></div>")
+
+                switch (tSourceType) {
+                    case "json":
+                        $.get(pUrl, function(data){
+                            var i
+                            var parts=data.split("@@@")
+                            for (i=0;i<parts.length;i++) {
+                                pageChunks[pageChunks.length]=new PageChunk(pageChunks.length,eval("(" + parts[i] + ")"),pTriggerParam,tTarget)
+                                var tChunk=pageChunks[pageChunks.length-1];
+								if (tChunk.grouplabel) {
+								$("#pageH1").html(tChunk.grouplabel + " <small id='pageH1small'></small>")
+								if (tChunk.groupsublabel) {
+								$("#pageH1small").html(tChunk.groupsublabel)
+								}
+								}
+                                
+								var blank=""
+								// tChunk.buildActionItems()
+								tChunk.buildChunk()
+								tChunk.addHandlers()
+								tChunk.throwStartTrigger()
+								tChunk.addStyle()
+								checkForLoaders(tTarget);
+                            }
+                        })
+						
+                        break;
+                    case "webpage":	
+				$.ajax({
+				url: pUrl,
+				success: function(data) {
+			$("#"+tTarget).empty();
+			$("#"+tTarget).hide().append(data).fadeIn("fast",function() {
+				if (pOnloadFunction) {
+				eval(pOnloadFunction+"('"+tTarget+"')")
+				}
+			})
+
+		}
+	   })
+							
+	break;
+                }
+				
+			//	if (pOnloadFunction) {
+				//eval(pOnloadFunction+"('"+tTarget+"')")
+			//	}
+			//	setTimeout("postBuildHandlers()",1000)
+
+			//	checkForLoaders(tTarget);
+			//	postBuildHandlers()
+				return
+            }
+
+            function resetStage() {
+                var tr=$("#tabsRow")
+                var ntr=$("#noTabsRow")
+                tr.empty()
+                ntr.empty()
+				 $("#pageH1").html("")
+            }
+
+
+
+// global post render handlers applicable to page not chunk
+function postBuildHandlers() {
+
+}
+
+// post render check for tag attribute specified content and actions
+function checkForLoaders(pTarget) {
+$(".chunkLoader.unloaded",$("#"+pTarget)).each(function(i, obj) {
+	$(this).removeClass("unloaded")
+	var tTarget=($(this).attr("parent"))? $(this).attr("parent") : $(this).prop("id")
+	var tLoadTrigger=$(this).attr("callback")
+	getPageChunk($(this).attr("load-target"),"",$(this).prop("id"),$(this).attr("target-source-type"),tLoadTrigger,tTarget)
+
+
+	// eval(tLoadTrigger+"('"+tTarget+"')")
+	
+	 })
+
+	 
+	 }
+	             function doRender(pRenderFunction,obj) {
+                return pRenderFunction(obj)
+            }
+	 			function handlerFunctions(pType) {
+				var tType=(pType)?pType:this.type;
+                var controls={
+					"microcalendar":initializeCalendar(),
+					"dashboard":addDashboardHandlers()
+					}
+				if (controls[tType]) {
+					controls[tType].call()
+				}
+				return
+            }
